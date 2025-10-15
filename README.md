@@ -1,2 +1,2 @@
-# template
-A template for all The CS Nerds Repos. Based on Library-System.
+# Library System v3
+A remake of the original Library System, in Svelte and PHP probably
