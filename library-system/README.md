@@ -43,7 +43,7 @@ The application will be available at `http://localhost:5173`.
 
 ## Configuration
 
-The `.env` file contains the database connection string and other environment variables. 
+The `.env` file contains the database connection string and other environment variables.
 By default, it uses:
 
 ```
