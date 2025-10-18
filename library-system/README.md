@@ -1,22 +1,36 @@
-# sv
+# Library System v3
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+A modern library management system built with SvelteKit, TypeScript, and PostgreSQL.
 
-## Creating a project
+## Prerequisites
 
-If you're seeing this, you've probably already done this step. Congrats!
+- Node.js 22.x or higher
+- npm 11.x or higher
+- Docker and Docker Compose (for local database)
+
+## Getting Started
+
+### 1. Clone and Install
 
 ```sh
-# create a new project in the current directory
-npx sv create
-
-# create a new project in my-app
-npx sv create my-app
+git clone https://github.com/The-CS-Nerds/Library-System-v3.git
+cd Library-System-v3/library-system
+npm install
 ```
 
-## Developing
+The `npm install` command will automatically create a `.env` file from `.env.example` if it doesn't exist.
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+### 2. Start the Database
+
+Start the PostgreSQL database using Docker:
+
+```sh
+npm run db:start
+```
+
+This will start a PostgreSQL database on `localhost:5432` with the credentials defined in `docker-compose.yml`.
+
+### 3. Run the Development Server
 
 ```sh
 npm run dev
@@ -25,7 +39,30 @@ npm run dev
 npm run dev -- --open
 ```
 
-## Building
+The application will be available at `http://localhost:5173`.
+
+## Configuration
+
+The `.env` file contains the database connection string and other environment variables. 
+By default, it uses:
+
+```
+DATABASE_URL="postgres://root:mysecretpassword@localhost:5432/local"
+```
+
+You can modify this file to match your local setup if needed.
+
+## Database Scripts
+
+- `npm run db:start` - Start the PostgreSQL database with Docker Compose
+- `npm run db:push` - Push schema changes to the database
+- `npm run db:generate` - Generate migration files
+- `npm run db:migrate` - Run migrations
+- `npm run db:studio` - Open Drizzle Studio for database management
+
+## Other Commands
+
+### Building
 
 To create a production version of your app:
 
