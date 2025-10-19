@@ -1,0 +1,25 @@
+services:
+  library-system-internal:
+    build: ../library-system-internal
+    image: library-system-internal:latest
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      HOST: 0.0.0.0
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
+  library-system-db:
+    image: postgres
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: root # CHANGE THIS
+      POSTGRES_PASSWORD: mysecretpassword # CHANGE THIS
+      POSTGRES_DB: local # CHANGE THIS
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
