@@ -1,3 +1,4 @@
+name: library-system
 services:
   library-system-internal:
     build:
