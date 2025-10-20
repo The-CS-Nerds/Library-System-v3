@@ -20,7 +20,7 @@ services:
       - 3000:3000
     restart: unless-stopped
   library-system-db:
-    image: postgres:latest-alpine
+    image: postgres:alpine
     restart: unless-stopped
     networks:
       - internal-network
