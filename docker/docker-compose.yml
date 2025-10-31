@@ -1,43 +1,18 @@
 name: library-system
 services:
-  library-system-internal:
+  library-system-web:
     build:
-      context: ../library-system-internal
-      args:
-        DATABASE_URL: "postgres://root:mysecretpassword@library-system-db:5432/local"
-    image: library-system-internal:latest
+      context: ../web
+    image: library-system-web:latest
     environment:
       PORT: 3000
       HOST: 0.0.0.0
-      DATABASE_URL: "postgres://root:mysecretpassword@library-system-db:5432/local"
     networks:
       - external-network
       - internal-network
-    depends_on:
-      library-system-db:
-        condition: service_healthy
     ports:
       - 3000:3000
     restart: unless-stopped
-  library-system-db:
-    image: postgres:alpine
-    restart: unless-stopped
-    networks:
-      - internal-network
-    environment:
-      POSTGRES_USER: root # CHANGE THIS
-      POSTGRES_PASSWORD: mysecretpassword # CHANGE THIS
-      POSTGRES_DB: local # CHANGE THIS
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U root"]
-      interval: 5s
-      timeout: 5s
-      retries: 10
-    volumes:
-      - pgdata:/var/lib/postgresql/data
-
-volumes:
-  pgdata:
 
 networks:
   external-network:
