@@ -1,5 +1,5 @@
 ---
-name: Deafult Pull Request
+name: Default Pull Request
 about: Suggest an idea for this project
 title: ''
 labels: ''

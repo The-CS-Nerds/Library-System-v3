@@ -7,6 +7,8 @@ assignees: '@library-system-dev-team'
 
 ---
 
+***THIS IS ONLY FOR MINOR SECURITY ISSUES/SUGGESTIONS***
+
 **Descripe the problem you have found.**
 A clear and concise description of what the problem is. Eg. I'm always frustrated when [...]
 
