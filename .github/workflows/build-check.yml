@@ -1,0 +1,42 @@
+name: Docker Compose Build
+
+on:
+  push:
+    branches: [ dev ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  compose-build:
+    runs-on: ubuntu-latest
+    env:
+      DOCKER_BUILDKIT: 1
+      COMPOSE_DOCKER_CLI_BUILD: 1
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Find compose file
+        id: find-compose
+        working-directory: docker
+        run: |
+          set -e
+          FILE=$(find . -maxdepth 1 -type f \( -name "docker-compose.yml" -o -name "docker-compose.yaml" -o -name "compose.yml" -o -name "compose.yaml" \) | head -n 1)
+          if [ -z "$FILE" ]; then
+            echo "No compose file found in ./docker/"
+            exit 1
+          fi
+          echo "Found compose file: $FILE"
+          echo "compose_file=$FILE" >> $GITHUB_OUTPUT
+
+      - name: Show Docker versions
+        run: |
+          docker version
+          docker compose version
+
+      - name: Compose Build
+        working-directory: docker
+        run: |
+          docker compose -f "${{ steps.find_compose.outputs.compose_file }}" build --pull
