@@ -8,7 +8,7 @@ export const user = pgTable('user', {
 	libraryNumber: integer('libraryNumber').notNull(),
 	email: text('email').unique().notNull(),
 	password: text('password').notNull(),
-	dateAdded: date('dateAdded')
+	dateAdded: timestamp('dateAdded')
 });
 
 export const session = pgTable('session', {
@@ -21,14 +21,14 @@ export const book = pgTable('book', {
 	id: text('id').primaryKey().notNull(),
 	title: text('title').notNull(),
 	isbn: text('isbn'),
-	dateAdded: date('dateAdded'),
+	dateAdded: timestamp('dateAdded'),
 	description: text('description')
 });
 
 export const loan = pgTable('loan', {
 	id: text('id').primaryKey().notNull(),
 	userId: text('user').notNull().references(() => user.id),
-	dateTakenOut: date('dateTakenOut').notNull(),
+	dateTakenOut: timestamp('dateTakenOut').notNull(),
 	loanLength: time('loanLength').notNull(),
 	
 });
