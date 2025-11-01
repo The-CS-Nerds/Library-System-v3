@@ -12,7 +12,6 @@ RUN npm run build
 
 FROM node:20-alpine AS run
 WORKDIR /app
-COPY .env ./
 ENV NODE_ENV=production
 COPY --from=build /app/build ./build
 COPY package*.json ./
