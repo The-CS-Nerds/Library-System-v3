@@ -3,6 +3,7 @@ import { title } from 'process';
 
 export const user = pgTable('user', {
 	id: text('id').primaryKey().notNull(),
+	username: text('username'),
 	firstName: text('firstName'),
 	surname: text('surname'),
 	libraryNumber: integer('libraryNumber').notNull(),
