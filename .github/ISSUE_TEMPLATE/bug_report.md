@@ -2,7 +2,7 @@
 name: Bug Report
 about: Create a report to help us improve
 title: ''
-labels: 'T - Bug'
+labels: 'T - Bug', 'Triage Needed'
 assignees: '@library-system-dev-team'
 
 ---
