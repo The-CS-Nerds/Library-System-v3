@@ -14,7 +14,9 @@ export const user = pgTable('user', {
 
 export const session = pgTable('session', {
 	id: text('id').primaryKey().notNull(),
-	userId: text('user_id').notNull().references(() => user.id),
+	userId: text('user_id')
+		.notNull()
+		.references(() => user.id),
 	expiresAt: timestamp('expires_at', { withTimezone: true, mode: 'date' }).notNull()
 });
 
@@ -28,10 +30,11 @@ export const book = pgTable('book', {
 
 export const loan = pgTable('loan', {
 	id: text('id').primaryKey().notNull(),
-	userId: text('user').notNull().references(() => user.id),
+	userId: text('user')
+		.notNull()
+		.references(() => user.id),
 	dateTakenOut: timestamp('dateTakenOut').notNull(),
-	loanLength: time('loanLength').notNull(),
-	
+	loanLength: time('loanLength').notNull()
 });
 
 export type Session = typeof session.$inferSelect;
