@@ -33,7 +33,7 @@
 
 	<Button.Root variant="outline">Log In</Button.Root>
 
-	<Button.Root variant="outline" onclick="ModeWatcher.toggleMode">
+	<Button.Root variant="outline" onclick={() => ModeWatcher.toggleMode()}>
 		<LucideIcons.Sun
 			class="h-[1.2rem] w-[1.2rem] scale-100 rotate-0 !transition-all dark:scale-0 dark:-rotate-90"
 		/>
