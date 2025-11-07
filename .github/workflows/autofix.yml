@@ -1,0 +1,40 @@
+name: autofix.ci
+on:
+  pull_request:
+    branches:
+      - main
+      - dev
+  push:
+    branches:
+      - main
+      - dev
+permissions: {}
+jobs:
+  eslint:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./web
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+      - run: |
+          npm i
+          npx eslint . --fix
+      - uses: autofix-ci/action@v1
+        with:
+          commit-message: "Apply ESLint fixes"
+  prettier:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./web
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+      - run: |
+          npm i
+          npx prettier . --write
+      - uses: autofix-ci/action@v1
+        with:
+          commit-message: "Apply Prettier format"
